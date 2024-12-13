@@ -14,8 +14,31 @@ public class WordCountMap {
      * @param words A string of Words separated by spaces.
      * @return a Map (key/value pairs) of all the words mapped to their number of occurrences.
      */
-    public Map<String, Integer> returnWordMap(String words){
+    public static Map<String, Integer> returnWordMap(String words){
 
-        return null;
+        String[] arrStrings = words.split(" ");
+        int count = 1;
+        Map<String, Integer> accurance = new HashMap<String, Integer>();
+
+
+        for(int i = 0; i < arrStrings.length; i++){
+            if(count > 1)
+                count = 1;
+            for(int j = 0; j < arrStrings.length; j++){
+                if(j == i)
+                    continue;
+                
+                if(arrStrings[i].compareTo(arrStrings[j]) == 0)
+                    count++;
+            }
+            accurance.put(arrStrings[i], count);
+        }
+        
+        return accurance;
+    }
+
+    public static void main(String[] args){
+        
+        System.out.println(returnWordMap("giraffe zebra giraffe"));
     }
 }
